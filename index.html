@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Iowa City: Acreage of Park Character per Park District</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Leaflet -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"> -->
+  <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+  <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+
+  <!-- D3.js -->
+  <link rel="stylesheet" href="css/d3.parcoords.css">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="js/d3.parcoords.js"></script>
+  <script src="js/colorbrewer.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+<!-- <nav class="navbar navbar-default">
+  <div class="container container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="https://geog3540.github.io/spr2016/">Geog 3540</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- <div class="collapse navbar-collapse" id="defaultNavbar1">
+      <ul class="nav navbar-nav">
+
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="about.html">About</a></li>
+            <li><a href="https://github.com/ryan-p-larson/CV/raw/master/Ryan-Larson-CV.pdf">Resume</a></li>
+            <li class="divider"></li>
+            <li><a href="mailto:ryan-p-larson@uiowa.edu">Contact</a></li>
+          </ul>
+        </li>
+      </ul> -->
+
+    <!-- </div>
+    <!-- /.navbar-collapse -->
+  <!-- </div>
+  <!-- /.container-fluid -->
+<!-- </nav> -->
+
+<div style="height:0px;" id="info-label" class="col-md-6 portfolio-item"></div>
+
+<!-- Page Content -->
+<div class="container">
+
+<!-- Page Header -->
+
+<div class="panel panel-default">
+<div class="panel-body">
+	<div class="row panel-header">
+		<div class="col-lg-12">
+			<h1 class="page-header">Iowa City: Discerning Trends in Park Type Across Iowa City Park Districts</h1>
+		</div>
+	</div>
+	<div class="row">
+	  <div class="col-lg-9">
+		<p> Over the past decade, Iowa City has invested heavily into its public park system. Through the use of documents such as the Iowa City Parks Master Plan,
+      Natural Areas Inventory and Management Plan, and the Urban Forestry Management Plan, Parks and Rec staff have sought to create a diverse and equitable parks system.
+       Inspiration for this web based geographic visualization originates with the “District Analysis” from the
+        <a href="https://www.icgov.org/city-government/departments-and-divisions/parks-and-recreation/master-plan">Parks Master Plan</a>.
+        The parks system is divided into six districts: North, Central, Southeast, South, West Central, and West. Each District contains
+         8-12 parks except for the West district with 1 park only.The district analysis in the Parks Master Plan portrays each district individually, but lacks a citywide district comparison with respect to the types of parks in each district. </p>
+
+    <p>The objective of this project is to compare the different districts as a whole with respect to acres of park type per 1000 residents; the map and parallel coordinate plot below give the user a multivariate tool to compare park districts.
+       Parks offer an essential role in providing space for exercise, relaxation, play, and help define the character of a neighborhood. Iowa City has expressed commitment
+        in increasing equity and enhancing the park system, and perhaps this project could act as an aid in doing so.</p>
+
+        <p>Park character is the primary attribute of a park, and 8 parks characters are defined by the City of Iowa City as such:</p>
+        <ul>
+          <li>“Compete”: This park is set up to foster competitive sports, with multiple ballfields and perhaps a concession stand and bleachers</li>
+          <li>“Connect”: These parks support social connections through programming or facilities</li>
+          <li>“Go Wild”: Nature preservation is the focus of these parks, and natural areas with native plants and animals shape the human experience</li>
+          <li>“Learn”: Parks that promote outdoor learning spaces, science-based activities or integration of the arts fit in this class of parks</li>
+          <li>“Move”: This category includes trails and parks that are primarily meant to get people walking, jogging or hiking</li>
+          <li>“Play”: Typically residents will find manicured open space, a shelter, and some limited programmed recreation space (e.g., a basketball court or a ball field)</li>
+          <li>“Splash”: Water play is the dominant theme here—specifically, constructed water play (splash pads) rather than a creek or river</li>
+          <li>“Reflect”: These parks provide opportunities to pull away from the hustle and bustle and to de-stress</li>
+        </ul>
+    <p>In addition to the park characters, we included total acres per 1000 residents and a simple socio-economic scale (1= low income and low education, 5= high income and high education).
+      These two categories offer an analysis tool to discern whether park characters are typical of a given socio-economic rank. </p>
+	  </div>
+	  <div class="col-lg-2">
+        <div class="row">
+		        <div id="legend"></div>
+            <br><br>
+            <div>
+              <p>In case GitHub Pages incorrectly displays the map, click below!</p>
+              <form method="get" action="data/lab7-larson.zip">
+              <button type="submit">Download .zip</button>
+              </form>
+            </div>
+	  </div>
+
+	</div>
+	  <!-- /.row -->
+
+	  <!-- /.row -->
+	  <!-- Projects Row -->
+	  <div class="row">
+		<div class="col-lg-12">
+		  <div class="col-md-12 portfolio-item">
+			<div id="map">
+		  </div>
+		</div>
+	  </div>
+    </div>
+	  <!-- /.row -->
+
+    <br style="margin-top:10px;">
+
+	  <!-- Projects Row -->
+	  <div class="row">
+		<div class="col-lg-12 portfolio-item">
+		  <div class="col-md-12 portfolio-item">
+			<div id="pcp" class="parcoords">
+		  </div>
+		</div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <p><b>Changes:</b> Mouseover now highlights the parallel coordinate plot! Some minor formatting tweaks otherwise.</p>
+      </div>
+    </div>
+
+</div>
+</div>
+</div><!-- /.container -->
+
+<hr>
+<br>
+
+<!-- Footer -->
+  <footer>
+	<div class="row">
+	  <div class="col-lg-12 text-center">
+		<p>Copyright &copy; Zachery Love, Nicole Douglass, Allison Dunlop</p>
+	  </div>
+	</div>
+	<!-- /.row -->
+  </footer>
+  
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!--link to main JavaScript file-->
+<script src="js/main2.js"></script>
+
+  </body>
+
+  </html>
